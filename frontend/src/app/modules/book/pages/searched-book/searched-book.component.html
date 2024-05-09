@@ -1,0 +1,11 @@
+
+<h3 class="d-flex justify-content-center">Результати пошуку за запитом: {{bookName}}</h3>
+<hr>
+<div class="d-flex justify-content-start gap-2 flex-wrap" *ngIf="!noSuchBook; else noBook">
+  <app-book-card
+    [book]="book"
+  ></app-book-card>
+</div>
+<ng-template #noBook>
+  <p>Книжки з таким іменем не знайдено.</p>
+</ng-template>

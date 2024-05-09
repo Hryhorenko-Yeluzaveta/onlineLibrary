@@ -1,0 +1,23 @@
+<div class="container" *ngIf="submitted else codeForm">
+    <div class="activate-message" *ngIf="isOkay else activationError">
+        <h2>Успішно активовано</h2>
+      <p>Аккаунт було успішно активовано.</p>
+      <button class="btn btn-primary" (click)="redirectToLogin()">Перейти до авторизації</button>
+    </div>
+</div>
+<ng-template #activationError>
+  <div class="activate-error">
+    <h2>Не вдалося активувати</h2>
+    <p>{{message}}</p>
+    <button class="btn btn-primary" (click)="submitted=false">Спробуйте ще раз</button>
+  </div>
+</ng-template>
+<ng-template #codeForm>
+  <div class="container">
+    <div class="text-center" style="width: 400px">
+      <h2>Введіть свій код активації</h2>
+      <code-input [isCodeHidden]="false" [codeLength]="6" [code]="'number'"
+      (codeCompleted)="onCodeCompleted($event)"></code-input>
+    </div>
+  </div>
+</ng-template>

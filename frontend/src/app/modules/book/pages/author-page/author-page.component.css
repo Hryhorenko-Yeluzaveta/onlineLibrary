@@ -1,0 +1,16 @@
+img {
+  cursor: pointer;
+  height: 370px;
+  width: auto;
+}
+a {
+  text-decoration: none;
+}
+.description {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">Online library</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" [class.active]="isActive('/books')">
+          <a class="nav-link" routerLink="/books">
+            <i class="fas fa-home-alt"></i>&nbsp;Головна сторінка
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="isActive('/liked-books')">
+          <a class="nav-link" routerLink="liked-books">
+            <i class="fas fa-heart"></i>&nbsp;Вподобані книжки
+          </a>
+        </li>
+      </ul>
+      <form class="d-flex gap-2 align-items-center" role="search">
+        <input class="form-control" #inputField (input)="onInput(inputField.value)" type="text" list="datalistOptions" id="exampleDataList" placeholder="Почніть вводити назву..">
+        <datalist id="datalistOptions">
+          <option *ngFor="let book of books" [value]="book.title">
+        </datalist>
+        <button class="btn btn-outline-success" type="button" (click)="foundBook()"> <i class="fas fa-search"></i></button>
+        <span>Вітаємо</span>
+        <span class="text fw-bold">{{userName}}</span>
+      </form>
+      <button class="btn btn-link" type="submit" (click)="logout()"><i class="fas fa-door-open"></i></button>
+    </div>
+</nav>

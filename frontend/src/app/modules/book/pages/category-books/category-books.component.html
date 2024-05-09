@@ -1,0 +1,70 @@
+
+<h3 class="d-flex justify-content-center">Усі книжки за категорією</h3>
+<hr>
+  <div class="d-flex justify-content-end mb-3" *ngIf="_admin">
+    <a [routerLink]="'/books/manage/' + categoryId" class="btn btn-outline-primary">
+      <i class="fas fa-plus"></i>&nbsp;Нова книжка
+    </a>
+  </div>
+<div class="d-flex justify-content-start gap-2 flex-wrap">
+  <app-book-card
+    [book]="book"
+    *ngFor="let book of books.content"
+  ></app-book-card>
+</div>
+
+<div class="d-flex justify-content-center mt-3 " *ngIf="haveElements; else empty">
+  <nav aria-label="page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link"
+           (click)="goToFirstPage()"
+           href="javascript:void(0)"
+           aria-label="Previous"
+           [class.disabled]="page==0"
+        >
+          <i class="fas fa-solid fa-angles-left"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link"
+           (click)="goToPreviousPage()"
+           href="javascript:void(0)"
+           aria-label="Previous"
+           [class.disabled]="page==0">
+          <i class="fas fa-solid fa-angle-left"></i>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let _ of [].constructor(this.books.totalPages); let pageIndex = index">
+        <a class="page-link"
+           (click)="goToPage(pageIndex)"
+           href="javascript:void(0)"
+           aria-label="CurrentPage"
+           [class.active]="page == pageIndex"
+        >{{ pageIndex + 1 }}
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link"
+           (click)="goToNextPage()"
+           href="javascript:void(0)"
+           aria-label="Next"
+           [class.disabled]="isLastPage"
+        >
+          <i class="fas fa-solid fa-chevron-right"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link"
+           (click)="goToLastPage()"
+           href="javascript:void(0)"
+           aria-label="LastPage"
+           [class.disabled]="isLastPage"
+        >
+          <i class="fas fa-solid fa-angles-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<ng-template #empty class="d-flex justify-content-center mt-3">У цій категорії поки що немає книжок</ng-template>

@@ -1,0 +1,48 @@
+<div class="p-2 ms-2">
+  <h2 class="d-flex justify-content-center">Редагування книги</h2>
+  <hr>
+  <div class="alert alert-danger mt-2" role="alert" *ngIf="errorMessage.length">
+    <p class="p-0 m-0" *ngFor="let msg of errorMessage">{{msg}}</p>
+  </div>
+
+  <div class="d-flex gap-2">
+    <div class="col-3">
+      <img class="rounded-1" width="100%" height="100%" [src]="selectedPicture || 'http://source.unsplash.com/user/c_v_r/1900x800'" alt="...">
+      <div class="mt-2">
+        <input (change)="onFileSelected($event)" class="form-control" type="file" id="formFile" accept="image/*">
+      </div>
+      <div class="mt-2">
+        Завантаження файлу книги:
+        <input (change)="onBookSelected($event)" class="form-control" type="file" id="bookFile">
+      </div>
+    </div>
+    <div class="col-9">
+      <form class="row g-3">
+        <div class="col-12">
+          <label for="title" class="form-label">Назва книги</label>
+          <input [(ngModel)]="bookRequest.title" name="title" type="text" class="form-control" id="title" placeholder="Назва">
+        </div>
+        <div class="col-6">
+          <label for="author" class="form-label">Автор</label>
+          <input [(ngModel)]="bookRequest.author"  name="author" type="text" class="form-control" id="author" placeholder="Ім'я автора">
+        </div>
+        <div class="col-6">
+          <label for="year" class="form-label">Рік написання</label>
+          <input [(ngModel)]="bookRequest.bookYear"  name="bookYear" type="text" class="form-control" id="year" placeholder="Рік">
+        </div>
+        <div class="col-12">
+          <label for="desc" class="form-label">Опис до книги</label>
+          <textarea [(ngModel)]="bookRequest.description"  name="description" class="form-control" id="desc" placeholder="Опис"></textarea>
+        </div>
+        <div class="d-flex justify-content-center gap-2 col-12">
+          <button (click)="history.back()" class="btn btn-outline-danger">
+            <i class="fas fa-times">&nbsp;Скасувати</i>
+          </button>
+          <button (click)="updateBook()" type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-save"></i>&nbsp;Зберегти
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

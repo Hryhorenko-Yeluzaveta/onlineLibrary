@@ -1,0 +1,32 @@
+<div class="card" style="width: 17.7rem" >
+  <span *ngIf="message!=''" class="alert alert-success">{{message}}</span>
+  <span *ngIf="errorMessage!=''" class="alert alert-danger">{{errorMessage}}</span>
+  <img height="400" [src]="bookImage" class="card-img-top" alt="..." [routerLink]="'/books/book/' + book.id">
+  <div class="card-body">
+    <h5 [routerLink]="'/books/book/' + book.id" class="card-title fs-6 text-nowrap fw-bold mb-2 btn-link"><i class="fa-solid fa-book"></i>&nbsp;{{ book.title }}</h5>
+    <h5 class="card-subtitle fs-6 text-secondary mb-2"><i class="fa-solid fa-user-check"></i>&nbsp;{{ book.author }}
+    </h5>
+    <h5 class="card-subtitle fs-6 text-secondary mb-2"><i class="fa-solid fa-pen"></i>&nbsp;{{ book.bookYear }}</h5>
+    <h5 class="card-subtitle fs-6 text-secondary mb-2"><i
+      class="fa-solid fa-hashtag"></i>&nbsp;{{ book.category?.name }}</h5>
+    <hr>
+    <p class="card-text limit-text">{{ book.description }}</p>
+  </div>
+  <div class="card-footer d-flex gap-2 justify-content-between align-items-center">
+    <div class="d-flex gap-2">
+      <app-rating [rating]="book.rate || 0"></app-rating>
+      <span class="fw-bold" *ngIf="book.rate || 0 > 0">
+        {{book.rate}}
+      </span>
+    </div>
+    <div class="d-flex gap-2" *ngIf="_admin">
+      <i (click)="onDelete(book.id)" class="fas fa-trash text-danger"></i>
+      <i (click)="onEdit(book.id)" class="fas fa-pen"></i>
+    </div>
+    <div class="d-flex gap-2">
+      <i  [routerLink]="'/books/book/' + book.id" class="fas fa-circle-info text-primary"></i>
+      <i (click)="toLike(book)" class="fas fa-heart text-primary" *ngIf="!isLiked"></i>
+      <i (click)="toDislike(book)" class="fas fa-heart text-danger" *ngIf="isLiked"></i>
+    </div>
+  </div>
+</div>

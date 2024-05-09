@@ -1,0 +1,55 @@
+<div class="container-fluid card login-container">
+  <h3 class="text-center">
+    Реєстрація
+  </h3>
+  <hr>
+    <p class="alert alert-danger" role="alert" *ngIf="errorMsg">{{errorMsg}}</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="username" class="form-label">Ім'я:</label>
+    <input formControlName="logname" type="text" class="form-control" id="username" placeholder="Your username">
+    <span
+      class="text-danger"
+      *ngIf="form.get('logname')?.invalid && form.get('logname')?.touched"
+    >
+      <span *ngIf="form.get('logname')?.errors?.['required']">Ім'я не може бути порожнім</span>
+<span *ngIf="form.get('logname')?.errors?.['minlength']"> Ім'я має бути більше {{form.get('logname')?.errors?.['minlength']['requiredLength'] }} символів.</span>
+<span *ngIf="form.get('logname')?.errors?.['maxlength']"> Ім'я має бути менше {{form.get('logname')?.errors?.['maxlength']['requiredLength'] }} символів.</span>
+      <span *ngIf="form.get('logname')?.errors?.['pattern']">Ім'я може складатися лише з букв, або цифр</span>
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input formControlName="email" type="email" class="form-control" id="email" placeholder="name@example.com">
+    <span
+      class="text-danger"
+      *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+    >
+      <span *ngIf="form.get('email')?.errors?.['required']">Email не може бути порожнім</span>
+      <span *ngIf="form.get('email')?.errors?.['email']">Введіть коректну email адресу</span>
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input formControlName="password" type="password" class="form-control" placeholder="Your password" id="password">
+    <span
+      class="text-danger"
+      *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+    >
+      <span *ngIf="form.get('password')?.errors?.['required']">Пароль не може бути порожнім</span>
+      <span *ngIf="form.get('password')?.errors?.['minlength']"> Пароль має бути більше {{form.get('password')?.errors?.['minlength']['requiredLength'] }} символів. Зараз {{ form.get('password')?.errors?.['minlength']['actualLength'] }}</span>
+    </span>
+  </div>
+  <div class="d-flex justify-content-between mb-3">
+    <button type="submit" class="btn btn-primary"  [disabled]="form.invalid || form.disabled">
+      <em class="fas fa-sign-in-alt">&nbsp;Зареєструватися</em>
+    </button>
+    <div>
+     Вже маєте аккаунт?&nbsp;
+      <button (click)="login()"  type="button" class="btn btn-link">
+        Увійти
+      </button>
+    </div>
+  </div>
+  </form>
+</div>

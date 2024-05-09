@@ -1,0 +1,10 @@
+.comment {
+  text-align: justify;
+}
+.description {
+  text-align: justify;
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,29 @@
+.limit-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+/*div {*/
+/*  &card {*/
+/*    max-height: 450px;*/
+/*    min-height: 450px;*/
+/*  }*/
+/*}*/
+
+i {
+  cursor: pointer;
+}
+.card-title {
+  cursor: pointer;
+}
+img{
+  cursor: pointer;
+}
+.card-text {
+  text-align: justify;
+}

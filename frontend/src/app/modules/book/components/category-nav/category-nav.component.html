@@ -1,0 +1,32 @@
+<nav class="nav flex-column">
+  <div *ngFor="let category of categories" >
+    <a
+      class="nav-link active text-primary"
+      aria-current="page" routerLinkActive="active"
+      [routerLink]="'category/' + category.id" >{{category.name}}</a>
+  </div>
+  <a class="btn btn-outline-primary" *ngIf="isClosed && _admin" (click)="toClose()">
+    <i class="fas fa-plus"></i>&nbsp;Нова категорія
+  </a>
+
+  <form *ngIf="isClicked" class="d-flex row ms-1" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div >
+      <label for="name" class="form-label" >Назва категорії:</label>
+      <input formControlName="name" name="name" type="text" class="form-control" id="name" placeholder="Назва">
+      <span
+        class="text-danger"
+        *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+      >
+      <span *ngIf="form.get('name')?.errors?.['required']">Введіть назву</span>
+      </span>
+    </div>
+    <div class="d-flex justify-content-center gap-2 mt-2">
+      <button (click)="isClicked = false; isClosed = true; form.reset()" class="btn btn-outline-danger">
+        <i class="fas fa-times">&nbsp;Скасувати</i>
+      </button>
+      <button type="submit" class="btn btn-outline-primary"  [disabled]="form.invalid || form.disabled">
+        <i class="fas fa-save"></i>&nbsp;Зберегти
+      </button>
+    </div>
+  </form>
+</nav>
